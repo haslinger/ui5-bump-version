@@ -56,14 +56,8 @@ exports.bumpPatch = function (sVersion) {
 exports.bumpBuild = function (sVersion) {
   let newVersion = this.detectBuild(sVersion);
 
-  let dToday = new Date();
   newVersion = newVersion + "+" +
-    dToday.getFullYear() +
-    dToday.getMonth() +
-    dToday.getDay() +
-    dToday.getHours() +
-    dToday.getMinutes() +
-    dToday.getSeconds();
+    new Date().toISOString().replace(/[-T:Z.]/g, '').slice(0, 14);
 
   return newVersion;
 };
